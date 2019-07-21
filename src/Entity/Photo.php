@@ -24,7 +24,8 @@ class Photo
     private $culture;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\plants", inversedBy="photo", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\plants")
+     * @ORM\JoinColumn(name="plant_id", referencedColumnName="id")
      */
     private $plant;
 

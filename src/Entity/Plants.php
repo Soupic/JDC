@@ -40,6 +40,7 @@ class Plants
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * Nombre d'arrosage par jour ou semaines
      */
     private $waterPeriod;
 
@@ -48,10 +49,6 @@ class Plants
      */
     private $cultures;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Photo", mappedBy="plant", cascade={"persist", "remove"})
-     */
-    private $photo;
 
     public function __construct()
     {
@@ -146,24 +143,6 @@ class Plants
         if ($this->cultures->contains($culture)) {
             $this->cultures->removeElement($culture);
             $culture->removePants($this);
-        }
-
-        return $this;
-    }
-
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?Photo $photo): self
-    {
-        $this->photo = $photo;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newPlant = $photo === null ? null : $this;
-        if ($newPlant !== $photo->getPlant()) {
-            $photo->setPlant($newPlant);
         }
 
         return $this;
