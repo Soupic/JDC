@@ -24,8 +24,8 @@ class Photo
     private $culture;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\plants")
-     * @ORM\JoinColumn(name="plant_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="App\Entity\Plants")
+     * @ORM\JoinColumn(name="plants_id", referencedColumnName="id")
      */
     private $plant;
 

@@ -24,7 +24,17 @@ class Culture
     private $year;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\plants", inversedBy="cultures")
+     * @var Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Plants", inversedBy="cultures")
+     * @ORM\JoinTable(name="culture_plants",
+     *      joinColumns={
+     *          @ORM\JoinColumn(name="culture_id", referencedColumnName="id")
+     *      },
+     *      inverseJoinColumns={
+     *          @ORM\JoinColumn(name="plants_id", referencedColumnName="id")
+     *      }
+     * )
      */
     private $pants;
 
@@ -40,7 +50,7 @@ class Culture
     private $period;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Photo", inversedBy="cu")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Photo", inversedBy="culture")
      */
     private $photo;
 
