@@ -35,6 +35,7 @@ class Culture
 
     /**
      * @ORM\Column(type="boolean")
+     * Représente le matin ou l'après midi
      */
     private $period;
 

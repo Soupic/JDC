@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plants{% endblock %}
+
+{% block body %}
+    <h1>Plants</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ plant.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ plant.name }}</td>
+            </tr>
+            <tr>
+                <th>Variety</th>
+                <td>{{ plant.variety }}</td>
+            </tr>
+            <tr>
+                <th>Water</th>
+                <td>{{ plant.water }}</td>
+            </tr>
+            <tr>
+                <th>Sun</th>
+                <td>{{ plant.sun }}</td>
+            </tr>
+            <tr>
+                <th>WaterPeriod</th>
+                <td>{{ plant.waterPeriod }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('plants_index') }}">back to list</a>
+
+    <a href="{{ path('plants_edit', {'id': plant.id}) }}">edit</a>
+
+    {{ include('plants/_delete_form.html.twig') }}
+{% endblock %}

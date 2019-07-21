@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plants index{% endblock %}
+
+{% block body %}
+    <h1>Plants index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Variety</th>
+                <th>Water</th>
+                <th>Sun</th>
+                <th>WaterPeriod</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plant in plants %}
+            <tr>
+                <td>{{ plant.id }}</td>
+                <td>{{ plant.name }}</td>
+                <td>{{ plant.variety }}</td>
+                <td>{{ plant.water }}</td>
+                <td>{{ plant.sun }}</td>
+                <td>{{ plant.waterPeriod }}</td>
+                <td>
+                    <a href="{{ path('plants_show', {'id': plant.id}) }}">show</a>
+                    <a href="{{ path('plants_edit', {'id': plant.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('plants_new') }}">Create new</a>
+{% endblock %}
