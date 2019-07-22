@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Plants;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Doctrine\ORM\EntityRepository;
 
@@ -16,16 +18,27 @@ class CultureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('year')
-            ->add('dateSpray')
-            ->add('period')
-            ->add('pants', CollectionType::class, [
-                'class' => Plants::class,
-                "query_builder" => function(EntityRepository $entityRepository){
-                    $queryBuilder = $entityRepository->createQueryBuilder('plant');
-                    $queryBuilder->addOrderBy("plant.name", "ASC");
-                },
+            ->add('year', DateType::class, [
+            "label" => "Date :",
+            "widget" => "single_text",
+            "data" => new \DateTime(),
             ])
+            ->add('dateSpray', DateType::class, [
+                "label" => "Date d'arrosage",
+                "widget" => "single_text",
+                "data" => new \DateTime(),
+            ])
+            ->add('period', CheckboxType::class, [
+                "label" => "matin ou soir",
+            ])
+            ->add('pants', EntityType::class, [
+                "label" => "Sélectionnez les plantes arrosé",
+                'class' => Plants::class,
+                'multiple' => true,
+            ])
+            // ->add('plants', CollectionType::class, [
+            //     'entry_type' => Plants::class,
+            // ])
             // ->add('photo')
         ;
     }
