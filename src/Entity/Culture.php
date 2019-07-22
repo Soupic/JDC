@@ -36,7 +36,7 @@ class Culture
      *      }
      * )
      */
-    private $pants;
+    private $plants;
 
     /**
      * @ORM\Column(type="datetime")
@@ -79,24 +79,24 @@ class Culture
     /**
      * @return Collection|plants[]
      */
-    public function getPants(): Collection
+    public function getPlants(): Collection
     {
-        return $this->pants;
+        return $this->plants;
     }
 
-    public function addPants(plants $pants): self
+    public function addPlants(plants $plants): self
     {
-        if (!$this->pants->contains($pants)) {
-            $this->pants[] = $pants;
+        if (!$this->plants->contains($plants)) {
+            $this->plants[] = $plants;
         }
 
         return $this;
     }
 
-    public function removePants(plants $pants): self
+    public function removePlants(plants $plants): self
     {
-        if ($this->pants->contains($pants)) {
-            $this->pants->removeElement($pants);
+        if ($this->plants->contains($plants)) {
+            $this->plants->removeElement($plants);
         }
 
         return $this;

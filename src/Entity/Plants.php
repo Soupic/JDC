@@ -44,15 +44,15 @@ class Plants
      */
     private $waterPeriod;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Culture", mappedBy="pants")
-     */
-    private $cultures;
-
 
     public function __construct()
     {
         $this->cultures = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -116,34 +116,6 @@ class Plants
     public function setWaterPeriod(?string $waterPeriod): self
     {
         $this->waterPeriod = $waterPeriod;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Culture[]
-     */
-    public function getCultures(): Collection
-    {
-        return $this->cultures;
-    }
-
-    public function addCulture(Culture $culture): self
-    {
-        if (!$this->cultures->contains($culture)) {
-            $this->cultures[] = $culture;
-            $culture->addPants($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCulture(Culture $culture): self
-    {
-        if ($this->cultures->contains($culture)) {
-            $this->cultures->removeElement($culture);
-            $culture->removePants($this);
-        }
 
         return $this;
     }
